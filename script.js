@@ -6,22 +6,29 @@ console.log(student.name)
 
 // document.getElementById('output').innerText = student;
 
-function addStudentData(student){
+
+function addStudent(student){
     const output = document.getElementById('output');
+    addStudentData(output,'ชื่อ',student.name);
+    addStudentData(output,'รหัส',student.username);
+    addStudentData(output,'เพศ',student.gender);
+}
+function addStudentData(type,key,data){
     let row = document.createElement('div');
     row.classList.add('row');
     let columnName = document.createElement('div')
     columnName.classList.add('col-1')
     columnName.classList.add('offset-1')
-    columnName.innerHTML='ชื่อ'
+    columnName.innerHTML=key
     let columnValue = document.createElement('div')
     columnValue.classList.add('col')
-    columnValue.innerHTML = student.name;
+    columnValue.innerHTML = data
     row.appendChild(columnName)
     row.appendChild(columnValue)
-    output.appendChild(row)
+    type.appendChild(row)
 }
 
+
 window.addEventListener('load',function(){
-    addStudentData(student)
+    addStudent(student)
 })
