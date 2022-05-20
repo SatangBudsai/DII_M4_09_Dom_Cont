@@ -16,7 +16,7 @@
     <title>Dom 09 ex1</title>
   </head>
 
-  <body>
+  <body onload="onload()">
     <div class="container">
       <div
         class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start"
@@ -150,28 +150,13 @@
     <table class="table table-striped table-hover">
       <thead>
         <tr>
-          <th scope="col">First</th>
-          <th scope="col">Last</th>
-          <th scope="col">Handle</th>
+          <th scope="col">#</th>
+          <th scope="col">ชื่อ</th>
+          <th scope="col">รหัส</th>
+          <th scope="col">เพศ</th>
         </tr>
       </thead>
-      <tbody>
-        <tr>
-          <td>Mark</td>
-          <td>Otto</td>
-          <td>@mdo</td>
-        </tr>
-        <tr>
-          <td>Jacob</td>
-          <td>Thornton</td>
-          <td>@fat</td>
-        </tr>
-        <tr>
-          <td>Jacob</td>
-          <td>Thornton</td>
-          <td>@fat</td>
-        </tr>
-      </tbody>
+      <tbody id="tableBody"></tbody>
     </table>
 
     <!-- Optional JavaScript; choose one of the two! -->
