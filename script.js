@@ -55,7 +55,6 @@ function addStudentToTable(index,student){
     const tableBody = document.getElementById('tableBody')
     let row = document.createElement('tr')
     let cell = document.createElement('th')
-    cell.setAttribute('score',row)
     cell.innerHTML = index
     row.appendChild(cell)
     cell = document.createElement('td')
@@ -84,13 +83,49 @@ function addStudentList(StudentList){
 //     addStudentList(students)
 // })
 
+
+function addStudentToTable2(index,student){
+    const tableBody2 = document.getElementById('tableBody2')
+    let row = document.createElement('tr')
+    let cell = document.createElement('th')
+    cell.innerHTML = index
+    row.appendChild(cell)
+    cell = document.createElement('td')
+    cell.innerHTML = student.name
+    row.appendChild(cell)
+    cell = document.createElement('td')
+    let somediv = document.createElement('div')
+    cell.appendChild(somediv)
+    let img = document.createElement('img')
+    somediv.appendChild(img)
+    img.setAttribute('src',student.imageLink)
+    img.style.width = '150px';
+    row.appendChild(cell)
+    cell = document.createElement('td')
+    cell.innerHTML = student.gender
+    row.appendChild(cell)
+    tableBody2.appendChild(row)
+}
+
+function addStudentList2(StudentList){
+    let counter =1;
+    for( student of StudentList){
+        addStudentToTable2(counter++,student)
+    }
+}
+
 function onload(){
     let students
     fetch('asset/students.json').then(response =>{
         return response.json()
     })
+    fetch('asset/students2.json').then(response =>{
+        return response.json()
+    })
         .then(data => {
             let students = data
             addStudentList(data)
+            addStudentList2(data)
         })
 }
+
