@@ -32,20 +32,20 @@ function addStudent(student){
     addStudentData(output,'รหัส',students[2].username);
     addStudentData(output,'เพศ',students[2].gender);
 }
-function addStudentData(type,key,data){
-    let row = document.createElement('div');
-    row.classList.add('row');
-    let columnName = document.createElement('div')
-    columnName.classList.add('col-1')
-    columnName.classList.add('offset-1')
-    columnName.innerHTML=key
-    let columnValue = document.createElement('div')
-    columnValue.classList.add('col')
-    columnValue.innerHTML = data
-    row.appendChild(columnName)
-    row.appendChild(columnValue)
-    type.appendChild(row)
-}
+// function addStudentData(type,key,data){
+//     let row = document.createElement('div');
+//     row.classList.add('row');
+//     let columnName = document.createElement('div')
+//     columnName.classList.add('col-1')
+//     columnName.classList.add('offset-1')
+//     columnName.innerHTML=key
+//     let columnValue = document.createElement('div')
+//     columnValue.classList.add('col')
+//     columnValue.innerHTML = data
+//     row.appendChild(columnName)
+//     row.appendChild(columnValue)
+//     type.appendChild(row)
+// }
 
 // window.addEventListener('load',function(){
 //     addStudent(student)
@@ -114,18 +114,42 @@ function addStudentList2(StudentList){
     }
 }
 
-function onload(){
-    let students
-    fetch('asset/students.json').then(response =>{
-        return response.json()
-    })
-    fetch('asset/students2.json').then(response =>{
-        return response.json()
-    })
-        .then(data => {
-            let students = data
-            addStudentList(data)
-            addStudentList2(data)
-        })
-}
+// function onload(){
+//     let students
+//     fetch('asset/students.json').then(response =>{
+//         return response.json()
+//     })
+//     fetch('asset/students2.json').then(response =>{
+//         return response.json()
+//     })
+//         .then(data => {
+//             let students = data
+//             addStudentList(data)
+//             addStudentList2(data)
+//         })
+// }
 
+document.getElementById('searchButton').addEventListener('click',()=>{
+    let id = document.getElementById('inputText').value
+    console.log(id)
+    fetch(`https://dv-student-backend-2019.appspot.com/student/${id}`)
+    .then(response => {
+        return response.json()
+    }).then(student => {
+        addStudentData(student)
+    })
+})
+
+function addStudentData(student){
+    let idElem = document.getElementById('id')
+    idElem.innerHTML = student.id
+    let studentIdElem = document.getElementById('studentId')
+    studentIdElem.innerHTML = student.studentId
+    let nameElem = document.getElementById('name')
+    nameElem.innerHTML = `${student.name} ${student.surname}`
+    let gpaElem = document.getElementById('gpa')
+    gpaElem.innerHTML = student.gpa
+    let profileElem = document.getElementById('image')
+    profileElem.setAttribute('src', student.image)
+    
+}
