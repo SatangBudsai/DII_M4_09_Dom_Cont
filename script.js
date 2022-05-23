@@ -161,6 +161,14 @@ function onload(){
     }).then(data => {
         addStudentList(data)
     })
+    student = {
+        "studentId":"642110329",
+        "name":"Satang",
+        "surname":"Budsai",
+        "gpa":3.50,
+        "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Gull_portrait_ca_usa.jpg/300px-Gull_portrait_ca_usa.jpg"
+    }
+    addStudentToDB(student)
 }
 
 function addStudentToDB (student){
