@@ -111,12 +111,17 @@ function addStudentToTable2(index,student){
     button.classList.add('btn-danger')
     button.setAttribute('type','button')
     button.innerText = 'delete'
+    button.addEventListener('click', function(){deleteStudent(student.id)
+    })
+    
     cell.appendChild(button)
     row.appendChild(cell)
     tableBody2.appendChild(row)
 }
 
 function addStudentList2(StudentList){
+    const tableBody = document.getElementById('tableBody2')
+    tableBody.innerHTML =''
     let counter =1;
     for( student of StudentList){
         addStudentToTable2(counter++,student)
@@ -190,11 +195,15 @@ function addStudentToDB (student){
         },
         body:JSON.stringify(student)
     }).then(response => {
-        
-        return response.json()
-        
+        if(response.status === 200){
+            return response.json()
+        }else{
+            throw Error(response.statusText)
+        }
+
     }).then(data=>{
         console.log('success',data)
+        showAllStudent()
     })
 }
 
@@ -209,6 +218,7 @@ function deleteStudent(id){
         }
     }).then(data=>{
         alert(`student name ${data.name} is now deleted`)
+        showAllStudent()
     }).catch(error => {
         alert(`your input student id is not on the database`)
     })
