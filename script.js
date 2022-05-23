@@ -153,3 +153,26 @@ function addStudentData(student){
     profileElem.setAttribute('src', student.image)
     
 }
+
+function onload(){
+    fetch('https://dv-student-backend-2019.appspot.com/students')
+    .then((response) => {
+        return response.json()
+    }).then(data => {
+        addStudentList(data)
+    })
+}
+
+function addStudentToDB (student){
+    fetch('https://dv-student-backend-2019.appspot.com/students',{
+        method: 'POST',
+        headers:{
+            'Content-Type':'application/json'
+        },
+        body:JSON.stringify(student)
+    }).then(response => {
+        return response.json()
+    }).then(data=>{
+        console.log('success',data)
+    })
+}
