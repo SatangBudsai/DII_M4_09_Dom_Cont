@@ -94,15 +94,24 @@ function addStudentToTable2(index,student){
     cell.innerHTML = student.name
     row.appendChild(cell)
     cell = document.createElement('td')
+    cell.innerHTML = student.surname
+    row.appendChild(cell)
+    cell = document.createElement('td')
     let somediv = document.createElement('div')
     cell.appendChild(somediv)
     let img = document.createElement('img')
     somediv.appendChild(img)
-    img.setAttribute('src',student.imageLink)
+    img.setAttribute('src',student.image)
     img.style.width = '150px';
     row.appendChild(cell)
+    //button delete
     cell = document.createElement('td')
-    cell.innerHTML = student.gender
+    let button = document.createElement('button')
+    button.classList.add('btn')
+    button.classList.add('btn-danger')
+    button.setAttribute('type','button')
+    button.innerText = 'delete'
+    cell.appendChild(button)
     row.appendChild(cell)
     tableBody2.appendChild(row)
 }
@@ -159,7 +168,7 @@ function onload(){
     .then((response) => {
         return response.json()
     }).then(data => {
-        addStudentList(data)
+        addStudentList2(data)
     })
     // student = {
     //     "studentId":"642110329",
@@ -170,7 +179,7 @@ function onload(){
     // }
     // addStudentToDB(student)
 
-    deleteStudent(16);
+    // deleteStudent(16);
 }
 
 function addStudentToDB (student){
@@ -181,7 +190,9 @@ function addStudentToDB (student){
         },
         body:JSON.stringify(student)
     }).then(response => {
+        
         return response.json()
+        
     }).then(data=>{
         console.log('success',data)
     })
@@ -200,5 +211,27 @@ function deleteStudent(id){
         alert(`student name ${data.name} is now deleted`)
     }).catch(error => {
         alert(`your input student id is not on the database`)
+    })
+}
+
+function onAddStudentClick(){
+    let student = {}
+    student.name = document.getElementById('nameInput').value
+    student.surname = document.getElementById('surnameInput').value
+    student.studentId = document.getElementById('studentIdInput').value
+    student.gpa = document.getElementById('gpaInput').value
+    student.image = document.getElementById('imageLinkInput').value
+    addStudentToDB(student);
+
+}
+
+document.getElementById('addButton').addEventListener('click',onAddStudentClick);
+
+function showAllStudent(){
+    fetch('https://dv-student-backend-2019.appspot.com/students')
+    .then((response)=>{
+        return response.json()
+    }).then(data => {
+        addStudentList2(data)
     })
 }
