@@ -88,6 +88,7 @@ function addStudentToTable2(index,student){
     const tableBody2 = document.getElementById('tableBody2')
     let row = document.createElement('tr')
     let cell = document.createElement('th')
+    cell.setAttribute('scope', 'row')
     cell.innerHTML = index
     row.appendChild(cell)
     cell = document.createElement('td')
@@ -111,10 +112,18 @@ function addStudentToTable2(index,student){
     button.classList.add('btn-danger')
     button.setAttribute('type','button')
     button.innerText = 'delete'
-    button.addEventListener('click', function(){deleteStudent(student.id)
+    button.addEventListener('click', function(){
+        let confirm_delete = confirm(`ท่านต้องการลบคุณ${student.name}หรือไม่`)
+        if (confirm_delete){
+            deleteStudent(student.id)
+        }
     })
     
     cell.appendChild(button)
+    
+    row.addEventListener('click' , function(){
+        showStudentBlock(student);
+    })
     row.appendChild(cell)
     tableBody2.appendChild(row)
 }
@@ -169,22 +178,23 @@ function addStudentData(student){
 }
 
 function onload(){
-    fetch('https://dv-student-backend-2019.appspot.com/students')
-    .then((response) => {
-        return response.json()
-    }).then(data => {
-        addStudentList2(data)
-    })
-    // student = {
-    //     "studentId":"642110329",
-    //     "name":"Satang",
-    //     "surname":"Budsai",
-    //     "gpa":3.50,
-    //     "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Gull_portrait_ca_usa.jpg/300px-Gull_portrait_ca_usa.jpg"
-    // }
-    // addStudentToDB(student)
+    hideAll()
+    // fetch('https://dv-student-backend-2019.appspot.com/students')
+    // .then((response) => {
+    //     return response.json()
+    // }).then(data => {
+    //     addStudentList2(data)
+    // })
+    // // student = {
+    // //     "studentId":"642110329",
+    // //     "name":"Satang",
+    // //     "surname":"Budsai",
+    // //     "gpa":3.50,
+    // //     "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Gull_portrait_ca_usa.jpg/300px-Gull_portrait_ca_usa.jpg"
+    // // }
+    // // addStudentToDB(student)
 
-    // deleteStudent(16);
+    // // deleteStudent(16);
 }
 
 function addStudentToDB (student){
@@ -244,4 +254,39 @@ function showAllStudent(){
     }).then(data => {
         addStudentList2(data)
     })
+}
+
+var singleStudentResult = document.getElementById('sinigle_student_result')
+var listStudentResult = document.getElementById('output')
+var addUserDetail = document.getElementById('addUserDetail')
+
+function hideAll(){
+    singleStudentResult.style.display='none'
+    listStudentResult.style.display='none'
+    addUserDetail.style.display='none'
+}
+
+document.getElementById('allStudentMenu').addEventListener('click',(event)=>{
+    showAllStudentBlock()
+})
+
+document.getElementById('searchMenu').addEventListener('click',(event)=>{
+    hideAll();
+    singleStudentResult.style.display='block'
+})
+document.getElementById('addStudentMenu').addEventListener('click',(event)=>{
+    hideAll();
+    addUserDetail.style.display='block'
+})
+
+function showAllStudentBlock(){
+    hideAll()
+    listStudentResult.style.display='block'
+    showAllStudent()
+}
+
+function showStudentBlock(student){
+    hideAll()
+    singleStudentResult.style.display='block'
+    addStudentData(student)
 }

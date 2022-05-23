@@ -39,9 +39,21 @@
         <ul
           class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0"
         >
-          <li><a href="#" class="nav-link px-2 link-secondary">Overview</a></li>
-          <li><a href="#" class="nav-link px-2 link-dark">Inventory</a></li>
-          <li><a href="#" class="nav-link px-2 link-dark">Customers</a></li>
+          <li>
+            <a href="#" class="nav-link px-2 link-secondary" id="allStudentMenu"
+              >รายชื่อทั้งหมด</a
+            >
+          </li>
+          <li>
+            <a href="#" class="nav-link px-2 link-dark" id="searchMenu"
+              >ค้นหา</a
+            >
+          </li>
+          <li>
+            <a href="#" class="nav-link px-2 link-dark" id="addStudentMenu"
+              >เพิ่มชื่อนักศึกษา</a
+            >
+          </li>
           <li><a href="#" class="nav-link px-2 link-dark">Products</a></li>
         </ul>
 
@@ -146,102 +158,112 @@
         </div>
       </form>
     </div>
-    <div id="output"></div>
+    <!-- add student data -->
+    <div id="addUserDetail">
+      <div class="d-flex justify-content-center my-3">
+        <div class="row gy-2 gx-3 align-items-center">
+          <div class="form-floating">
+            <input
+              type="text"
+              class="form-control"
+              id="nameInput"
+              placeholder="ชื่อ"
+            />
+            <label for="nameInput">ชื่อ</label>
+          </div>
+          <div class="form-floating">
+            <input
+              type="text"
+              class="form-control"
+              id="surnameInput"
+              placeholder="นามสกลุ"
+            />
+            <label for="surnameInput">นามสกลุ</label>
+          </div>
+          <div class="form-floating">
+            <input
+              type="text"
+              class="form-control"
+              id="studentIdInput"
+              placeholder="รหัสนักศึกษา"
+            />
+            <label for="studentIdInput">รหัสนักศึกษา</label>
+          </div>
+          <div class="form-floating">
+            <input
+              type="text"
+              class="form-control"
+              id="gpaInput"
+              placeholder="gpa"
+            />
+            <label for="gpaInput">GPA</label>
+          </div>
+          <div class="form-floating">
+            <input
+              type="text"
+              class="form-control"
+              id="imageLinkInput"
+              placeholder="image Link"
+            />
+            <label for="imageLinkInput">Link รูป </label>
+          </div>
+          <div class="col-auto">
+            <button type="button" class="btn btn-primary" id="addButton">
+              Submit
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- <div id="output"></div>
     <table class="table table-striped table-hover">
       <thead>
         <tr>
           <th scope="col">#</th>
           <th scope="col">ชื่อ</th>
-          <th scope="col">รหัส</th>
+          <th scope="col">รหัส</th>s
           <th scope="col">เพศ</th>
         </tr>
       </thead>
       <tbody id="tableBody"></div>
       </tbody>
-    </table>
-    <table class="table table-striped table-hover">
-      <thead>
-        <tr>
-          <th scope="col">#</th>
-          <th scope="col">ชื่อ</th>
-          <th scope="col">นามสกลุ</th>
-          <th scope="col">รูป</th>
-          <th scope="col">ลบ</th>
-        </tr>
-      </thead>
-      <tbody id="tableBody2">
+    </table> -->
+    <div id="output">
+      <table class="table table-striped table-hover">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">ชื่อ</th>
+            <th scope="col">นามสกลุ</th>
+            <th scope="col">รูป</th>
+            <th scope="col">ลบ</th>
+          </tr>
+        </thead>
+        <tbody id="tableBody2"></tbody>
+      </table>
+    </div>
+    <!-- add -->
+    <div id="sinigle_student_result" class="px-3 m-5">
+      <div class="row">
+        <div class="col-3"><b>Id:</b></div>
+        <div class="col-3" id="id">id</div>
       </div>
-      </tbody>
-    </table>
-    <!-- <div id="sinigle_student_result" class="px-3 m-5">
-        <div class="row">
-            <div class="col-3"><b>Id:</b></div>
-            <div class="col-3" id="id">id</div>
-        </div>
-        <div class="row">
-            <div class="col-3"><b>Student id:</b></div>
-            <div class="col-3" id="studentId">id</div>
-        </div>
-        <div class="row">
-            <div class="col-3"><b>Name:</b></div>
-            <div class="col-3" id="name">name and surname</div>
-        </div><div class="row">
-            <div class="col-3"><b>GPA:</b></div>
-            <div class="col-3" id="gpa">gpa</div>
-        </div>
-        <div class="row">
-            <div class="col-3"><b>Id:</b></div>
-            <div class="col">
-                <img src="asset/images/default.jpg" alt="default image" id="image" />
-            </div>
-        </div>
-    </div> -->
-    <div class="d-flex justify-content-center my-3">
-      <div class="row gy-2 gx-3 align-items-center">
-        <div class="form-floating">
-          <input
-            type="text"
-            class="form-control"
-            id="nameInput"
-            placeholder="ชื่อ"
-          />
-          <label for="nameInput">ชื่อ</label>
-        </div>
-        <div class="form-floating">
-          <input
-            type="text"
-            class="form-control"
-            id="surnameInput"
-            placeholder="นามสกลุ"
-          />
-          <label for="surnameInput">นามสกลุ</label>
-        </div>
-        <div class="form-floating">
-          <input
-            type="text"
-            class="form-control"
-            id="studentIdInput"
-            placeholder="รหัสนักศึกษา"
-          />
-          <label for="studentIdInput">รหัสนักศึกษา</label>
-        </div>
-        <div class="form-floating">
-          <input type="text" class="form-control" id="gpaInput" placeholder="gpa" />
-          <label for="gpaInput">GPA</label>
-        </div>
-        <div class="form-floating">
-          <input
-            type="text"
-            class="form-control"
-            id="imageLinkInput"
-            placeholder="image Link"
-          />
-          <label for="imageLinkInput">Link รูป </label>
-        </div>
-        <div class="col-auto">
-          <button type="button" class="btn btn-primary" id="addButton">
-            Submit
-          </button>
+      <div class="row">
+        <div class="col-3"><b>Student id:</b></div>
+        <div class="col-3" id="studentId">id</div>
+      </div>
+      <div class="row">
+        <div class="col-3"><b>Name:</b></div>
+        <div class="col-3" id="name">name and surname</div>
+      </div>
+      <div class="row">
+        <div class="col-3"><b>GPA:</b></div>
+        <div class="col-3" id="gpa">gpa</div>
+      </div>
+      <div class="row">
+        <div class="col-3"><b>Id:</b></div>
+        <div class="col">
+          <img src="asset/images/default.jpg" alt="default image" id="image" />
         </div>
       </div>
     </div>
